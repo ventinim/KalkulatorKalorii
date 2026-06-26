@@ -1,5 +1,5 @@
-﻿using System; // using System namespace for basic functionalities
-using System.IO;  // Input/Output zawiera klasy do odczytu i zapisu plików
+﻿using System; 
+using System.IO;  
 
 namespace KalkulatorKalorii
 {
@@ -16,15 +16,15 @@ namespace KalkulatorKalorii
         // dane[i, 2] = waga
         // dane[i, 3] = BMI
         // dane[i, 4] = BMR
-        static double[,] dane = new double[100, 5]; //  wiersze od 0 do 99, kolumny od 0 do 4
-        // startowa liczba użytkowników, która będzie zwiększana przy dodawaniu nowych 
+        static double[,] dane = new double[100, 5]; 
+        
         static int liczbaUzytkownikow = 0;
 
         static void Main(string[] args)
         {
             // Zanim program wogule zaccznie działać odczytuje dane zapisane w pliku poprzednio, jeśli plik istnieje. Jeśli nie istnieje, program zaczyna z pustą listą użytkowników. Jeśli tego by nie było program za każdym razem zaczynał się pustą listą użytkowników i wszystkie dane byłyby tracone po zamknięciu programu.
             OdczytajPlik();
-            // wywołanie metody Menu() która wyświetla menu główne programu i pozwala na wybór opcji
+            
             Menu();
             // Zapisanie danych do pliku po zakończeniu programu, aby nie stracić danych użytkowników
             ZapiszDoPliku();
@@ -36,7 +36,7 @@ namespace KalkulatorKalorii
 
             do
             {
-                Console.Clear(); // czyści ekran konsoli z wszystkich poprzednich danych
+                Console.Clear(); 
 
                 Console.WriteLine("===== KALKULATOR KALORII =====");
                 Console.WriteLine("----  Menu Główne  ----");
@@ -129,7 +129,7 @@ namespace KalkulatorKalorii
                 Console.Write("Niepoprawna wartość. Podaj wagę użytkownika w pełnych kilogramach: ");
             }
             dane[liczbaUzytkownikow, 2] = waga;
-
+            
             liczbaUzytkownikow++;
 
             Console.WriteLine("\nUżytkownik został dodany.");
@@ -175,7 +175,7 @@ namespace KalkulatorKalorii
         }
 
         static void MenuUzytkownika(int i)
-        {
+        { 
             int wybor;
 
             do
@@ -302,14 +302,14 @@ namespace KalkulatorKalorii
                     Console.WriteLine("Niepoprawny wybór, ustawiono domyślny współczynnik aktywności fizycznej (1.2).");
                     break;
             }
-            // zapis do dane[nr,4]
+            // zapis do dane[i,4]
 
             double kalorie = bmr * pal;
             dane[i, 4] = kalorie;
 
             Console.WriteLine($"\nTwoje BMR wynosi: {bmr:F2} kcal na dzień");
             Console.WriteLine($"By utrzymać wagę, potrzebujesz około {kalorie:F2} kcal na dzień.");
-            Console.WriteLine($"By schudnąć, zaleca się byś sporzywał około {kalorie - 500:F2} kcal na dzień.");
+            Console.WriteLine($"By schudnąć, zaleca się byś spżywał około {kalorie - 500:F2} kcal na dzień.");
         }
 
         static void WyświetlUżytkowników()
@@ -326,7 +326,7 @@ namespace KalkulatorKalorii
 
         }
 
-
+        
         static void SrednieBMI()
         {
             // przypadek gdy nie ma zapisanych użytkowników
@@ -348,7 +348,7 @@ namespace KalkulatorKalorii
 
         }
 
-        static void ZapiszDoPliku()
+                static void ZapiszDoPliku()
         {
             // zapis do pliku
             using (StreamWriter sw = new StreamWriter("dane.txt"))
