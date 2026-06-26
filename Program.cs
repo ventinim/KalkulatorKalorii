@@ -46,7 +46,8 @@ namespace KalkulatorKalorii
                 Console.WriteLine("3. Wyświetl wszystkich zapisanych użytkowników");
                 Console.WriteLine("4. Wyświetl średnie BMI wszystkich użytkowników");
                 Console.WriteLine("5. Zapisz dane");
-                Console.WriteLine("6. Wyjście");
+                Console.WriteLine("6. Wyzeruj użytkowników");
+                Console.WriteLine("7. Wyjście");
 
                 Console.Write("\nTwój wybór: ");
 
@@ -76,8 +77,11 @@ namespace KalkulatorKalorii
                     case 5:
                         ZapiszDoPliku();
                         break;
-
                     case 6:
+                        WyzerujUżytkowników();
+                        break;
+
+                    case 7:
                         Console.WriteLine("Dziękujemy za skorzystanie z kalkulatora!");
                         Console.WriteLine("Zamykanie programu...");
                         Console.ReadKey();
@@ -88,13 +92,13 @@ namespace KalkulatorKalorii
                         break;
                 }
 
-                if (wybor != 6)
+                if (wybor != 7)
                 {
                     Console.WriteLine("\nNaciśnij dowolny klawisz aby kontynuować...");
                     Console.ReadKey();
                 }
 
-            } while (wybor != 6);
+            } while (wybor != 7);
         }
 
         static void DodajUzytkownika()
@@ -321,8 +325,7 @@ namespace KalkulatorKalorii
             {
                 Console.WriteLine($"{i + 1}.\t{imiona[i]}\t{płeć[i]}\t{dane[i, 0]}\t{dane[i, 1]}\t{dane[i, 2]}");
             }
-            Console.WriteLine("\nNaciśnij dowolny klawisz, aby wrócić do menu...");
-            Console.ReadKey();
+                    
 
         }
 
@@ -397,6 +400,27 @@ namespace KalkulatorKalorii
             Console.WriteLine($"BMI: {dane[i, 3]:F2}");
             Console.WriteLine($"BMR: {dane[i, 4]:F2} kcal/dzień");
         }
+        static void WyzerujUżytkowników()
+        {
+            Console.Clear();
+            Console.WriteLine("--PRZYSTĘPOWANIE DO WYZEROWANIA UŻYRKOWNIKÓW--");
+            Console.WriteLine("Czy jesteś pewnien że chcesz wyzerować wszystkich użytkowników? (TAK/NIE)");
+            string odpowiedz = Console.ReadLine().Trim().ToUpper();
+            if ( odpowiedz == "TAK")
+            {
+                liczbaUzytkownikow = 0;
+                if (File.Exists("dane.txt"))
+                {
+                    File.Delete("dane.txt");
+                }
+                Console.WriteLine("Wszyscy użytkownicy zostali wyzerowani.");
+            }
+            else
+            {
+                Console.WriteLine("Wyzerowanie użytkowników zostało anulowane.");
+            }
+        }
+
     }
 }
 
