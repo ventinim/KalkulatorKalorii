@@ -123,9 +123,19 @@ namespace KalkulatorKalorii
             }
             płeć[liczbaUzytkownikow] = plec;
             Console.Write("\nPodaj wiek użytkownika: ");
-            dane[liczbaUzytkownikow, 0] = Convert.ToDouble(Console.ReadLine());
+            double wiek;
+            while (!double.TryParse(Console.ReadLine(), out wiek) || wiek <= 0)
+            {
+                Console.Write("Niepoprawna wartość. Podaj wiek użytkownika: ");
+            }
+            dane[liczbaUzytkownikow, 0] = wiek;
             Console.Write("\nPodaj wzrost użytkownika (cm): ");
-            dane[liczbaUzytkownikow, 1] = Convert.ToDouble(Console.ReadLine());
+            double wzrost;
+            while (!double.TryParse(Console.ReadLine(), out wzrost) || wzrost <= 0)
+            {
+                Console.Write("Niepoprawna wartość. Podaj wzrost użytkownika (cm): ");
+            }
+            dane[liczbaUzytkownikow, 1] = wzrost;
             Console.Write("\nPodaj wagę użytkownika w pełnych kilogramach: ");
             double waga;
             while (!double.TryParse(Console.ReadLine(), out waga) || waga <= 0)
