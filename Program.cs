@@ -5,9 +5,8 @@ namespace KalkulatorKalorii
 {
     class Program
     {
-        // TABLICE
+        
         // max 100 użytkowników bo ograniczenia pamięciowe i prostota implementacji
-        // tablica jednowymiarowe imion i płci użytkowników
         static string[] imiona = new string[100];
         static char[] płeć = new char[100];
 
@@ -30,8 +29,6 @@ namespace KalkulatorKalorii
             // Zapisanie danych do pliku po zakończeniu programu, aby nie stracić danych użytkowników
             ZapiszDoPliku();
         }
-
-        // MENU
 
         static void Menu() 
         {
@@ -100,8 +97,6 @@ namespace KalkulatorKalorii
             } while (wybor != 6);
         }
 
-        // DODAWANIE UŻYTKOWNIKA
-
         static void DodajUzytkownika()
         {
             Console.Clear();
@@ -134,14 +129,11 @@ namespace KalkulatorKalorii
                 Console.Write("Niepoprawna wartość. Podaj wagę użytkownika w pełnych kilogramach: ");
             }
             dane[liczbaUzytkownikow, 2] = waga;
-            //dane[liczbaUzytkownikow, 2] = Convert.ToDouble(Console.ReadLine());
 
             liczbaUzytkownikow++;
 
             Console.WriteLine("\nUżytkownik został dodany.");
         }
-
-        // WYBÓR UŻYTKOWNIKA
 
         static void WybierzUzytkownika()
         {
@@ -182,16 +174,8 @@ namespace KalkulatorKalorii
 
         }
 
-        // MENU UŻYTKOWNIKA
-
         static void MenuUzytkownika(int i)
         {
-            // tutaj będzie:
-            //
-            // 1. Oblicz BMI
-            // 2. Oblicz BMR
-            // 3. Pokaż dane użytkownika 
-            // 4. Powrót do menu głównego
             int wybor;
 
             do
@@ -237,8 +221,6 @@ namespace KalkulatorKalorii
 
         }
 
-        // BMI
-
         static void ObliczBMI(int i)
         {
             // tutaj obliczenia BMI
@@ -266,8 +248,6 @@ namespace KalkulatorKalorii
                 Console.WriteLine("Masz otyłość, zalecamy skonsultować się z dietetykiem.");
             }
         }
-
-        // BMR
 
         static void ObliczBMR(int i)
         {
@@ -332,8 +312,6 @@ namespace KalkulatorKalorii
             Console.WriteLine($"By schudnąć, zaleca się byś sporzywał około {kalorie - 500:F2} kcal na dzień.");
         }
 
-        // WYŚWIETL UŻYTKOWNIKÓW
-
         static void WyświetlUżytkowników()
         {
             // pętla wyświetlająca wszystkich
@@ -348,7 +326,6 @@ namespace KalkulatorKalorii
 
         }
 
-        // ŚREDNIE BMI
 
         static void SrednieBMI()
         {
@@ -371,8 +348,6 @@ namespace KalkulatorKalorii
 
         }
 
-        // ZAPIS DO PLIKU
-
         static void ZapiszDoPliku()
         {
             // zapis do pliku
@@ -386,11 +361,8 @@ namespace KalkulatorKalorii
             }
         }
 
-        // ODCZYT Z PLIKU
-
         static void OdczytajPlik()
         {
-            // odczyt pliku
             if (File.Exists("dane.txt"))
             {
                 using (StreamReader sr = new StreamReader("dane.txt"))
