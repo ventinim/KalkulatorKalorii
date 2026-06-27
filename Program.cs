@@ -104,13 +104,25 @@ namespace KalkulatorKalorii
         static void DodajUzytkownika()
         {
             Console.Clear();
-            Console.Write("\nPodaj imię użytkownika: ");
-            imiona[liczbaUzytkownikow] = Console.ReadLine();
+            string imie;
+            do
+            {
+                Console.Write("\nPodaj imię użytkownika: ");
+                imie = Console.ReadLine() ?? "";
+                if (string.IsNullOrWhiteSpace(imie))
+                {
+                    Console.WriteLine("Imie nie może być puste, podaj imie użytownika.");
+                }
+
+            } while (string.IsNullOrWhiteSpace(imie));
+            imiona[liczbaUzytkownikow] = imie;
+            
+
             char plec;
             while (true)
             {
                 Console.Write("\nPodaj Płeć użytkownika (M/K): ");
-                string tekst = Console.ReadLine().ToUpper();
+                string tekst = (Console.ReadLine() ?? "").ToUpper();
                 if (tekst == "M" || tekst == "K")
                 {
                     plec = tekst[0];
@@ -122,7 +134,7 @@ namespace KalkulatorKalorii
                 }
             }
             płeć[liczbaUzytkownikow] = plec;
-            Console.Write("\nPodaj wiek użytkownika: ");
+            Console.Write("\nPodaj wiek użytkownika: "); 
             double wiek;
             while (!double.TryParse(Console.ReadLine(), out wiek) || wiek <= 0)
             {
@@ -373,17 +385,17 @@ namespace KalkulatorKalorii
                 }
             }
         }
-
+        // jesli tego nie po zamknięciu programu dane wprowadzone są tracone 
         static void OdczytajPlik()
         {
             if (File.Exists("dane.txt"))
             {
                 using (StreamReader sr = new StreamReader("dane.txt"))
                 {
-                    liczbaUzytkownikow = int.Parse(sr.ReadLine());
+                    liczbaUzytkownikow = int.Parse(sr.ReadLine() ?? "0");
                     for (int i = 0; i < liczbaUzytkownikow; i++)
                     {
-                        string[] linia = sr.ReadLine().Split(',');
+                        string[] linia = (sr.ReadLine() ?? "").Split(',');
                         imiona[i] = linia[0];
                         płeć[i] = char.Parse(linia[1]);
                         dane[i, 0] = double.Parse(linia[2]);
@@ -415,7 +427,7 @@ namespace KalkulatorKalorii
             Console.Clear();
             Console.WriteLine("--PRZYSTĘPOWANIE DO WYZEROWANIA UŻYRKOWNIKÓW--");
             Console.WriteLine("Czy jesteś pewnien że chcesz wyzerować wszystkich użytkowników? (TAK/NIE)");
-            string odpowiedz = Console.ReadLine().Trim().ToUpper();
+            string odpowiedz = (Console.ReadLine() ?? "").Trim().ToUpper();
             if ( odpowiedz == "TAK")
             {
                 liczbaUzytkownikow = 0;
